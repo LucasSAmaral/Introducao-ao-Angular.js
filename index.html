@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <title>Introdução ao Angular</title>
 </head>
 <body>
     
@@ -13,7 +14,7 @@
 
         <h1 ng-bind="titulo"></h1>
 
-        <table>
+        <table class="striped">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -32,7 +33,7 @@
                     <td>{{aluno.nota1}}</td>
                     <td>{{aluno.nota2}}</td>
                     <td>{{aluno.nota3}}</td>
-                    <td>0</td>
+                    <td>{{media(aluno)}}</td>
                 </tr>
             </tbody>
         </table>
@@ -41,6 +42,8 @@
     </header>
 
     <script src="lib/angular/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <script>
         angular.module("meuModulo",[])
@@ -84,6 +87,11 @@
                     nota3: 55
                 }
             ];
+
+            $scope.media = function(Aluno){
+                var media = (Aluno.nota1 + Aluno.nota2 + Aluno.nota3)/3;
+                return media.toFixed(2);
+            }
 
         })
     </script>
