@@ -9,7 +9,33 @@
 <body>
     
     <header ng-controller="indexController">
-        <h1>{{titulo}}</h1>
+        <!-- <h1>{{titulo}}</h1> -->
+
+        <h1 ng-bind="titulo"></h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Nota 1</th>
+                    <th>Nota 2</th>
+                    <th>Nota 3</th>
+                    <th>Média</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="aluno in alunos">
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.email}}</td>
+                    <td>{{aluno.nota1}}</td>
+                    <td>{{aluno.nota2}}</td>
+                    <td>{{aluno.nota3}}</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
 
         
     </header>
@@ -20,6 +46,44 @@
         angular.module("meuModulo",[])
         .controller("indexController", function($scope) {
             $scope.titulo = "Sistema com Angular JS";
+
+            $scope.alunos = [
+                {
+                    nome: "Lucas",
+                    email: "lucassantosamaral@hotmail.com",
+                    nota1: 65,
+                    nota2: 80,
+                    nota3: 55
+                },
+                {
+                    nome: "Paulo",
+                    email: "paulosantosamaral@hotmail.com",
+                    nota1: 75,
+                    nota2: 80,
+                    nota3: 55
+                },
+                {
+                    nome: "Rogério",
+                    email: "rogerio@hotmail.com",
+                    nota1: 65,
+                    nota2: 60,
+                    nota3: 55
+                },
+                {
+                    nome: "Elizete",
+                    email: "elizete@hotmail.com",
+                    nota1: 95,
+                    nota2: 80,
+                    nota3: 55
+                },
+                {
+                    nome: "Boby",
+                    email: "boby@hotmail.com",
+                    nota1: 65,
+                    nota2: 30,
+                    nota3: 55
+                }
+            ];
 
         })
     </script>
