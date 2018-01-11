@@ -7,12 +7,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <title>Introdução ao Angular</title>
 </head>
-<body>
+<body ng-controller="indexController">
     
-    <header ng-controller="indexController">
+    <header class="container">
         <!-- <h1>{{titulo}}</h1> -->
 
         <h1 ng-bind="titulo"></h1>
+
+    </header>
+
+    <main class="container">
+
+        <div class="row">
+
+            <input type="text" ng-model="busca.nome" placeholder="Busca">
+            
+        </div>
 
         <table class="striped">
             <thead>
@@ -27,7 +37,7 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="aluno in alunos">
+                <tr ng-repeat="aluno in alunos | filter:busca">
                     <td>{{aluno.nome}}</td>
                     <td>{{aluno.email}}</td>
                     <td>{{aluno.nota1}}</td>
@@ -37,9 +47,7 @@
                 </tr>
             </tbody>
         </table>
-
-        
-    </header>
+    </main>
 
     <script src="lib/angular/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
