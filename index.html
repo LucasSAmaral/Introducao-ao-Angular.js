@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="meuModulo">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <title>Introdução ao Angular</title>
 </head>
+
 <body ng-controller="indexController">
-    
+
     <header class="container">
         <!-- <h1>{{titulo}}</h1> -->
 
@@ -21,7 +23,7 @@
         <div class="row">
 
             <input type="text" ng-model="busca.nome" placeholder="Busca">
-            
+
         </div>
 
         <table class="striped">
@@ -47,80 +49,142 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="row">
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Adicionar</a>
+        </div>
+
     </main>
 
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Adicionar Aluno</h4>
+            <p>Preencha os dados do Aluno</p>
+
+            <div class="row">
+                <div class="input-field col m6 s12">
+                    <input type="text" ng-model="Aluno.nome" class="validate">
+                    <label>Nome</label>
+                </div>
+                <div class="input-field col m6 s12">
+                    <input type="text" ng-model="Aluno.email" class="validate">
+                    <label>E-mail</label>
+                </div>
+                <div class="input-field col m4 s12">
+                    <input type="text" ng-model="Aluno.nota1" class="validate">
+                    <label>Nota1</label>
+                </div>
+                <div class="input-field col m4 s12">
+                    <input type="text" ng-model="Aluno.nota2" class="validate">
+                    <label>Nota2</label>
+                </div>
+                <div class="input-field col m4 s12">
+                    <input type="text" ng-model="Aluno.nota3" class="validate">
+                    <label>Nota3</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a ng-click="addAluno(Aluno)" class="waves-effect waves-light btn blue">Adicionar</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+        </div>
+    </div>
+
     <script src="lib/angular/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <script>
-        angular.module("meuModulo",[])
-        .controller("indexController", function($scope) {
-            $scope.titulo = "Sistema com Angular JS";
+        $(document).ready(function () {
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+    </script>
 
-            $scope.alunos = [
-                {
-                    nome: "Lucas",
-                    email: "lucassantosamaral@hotmail.com",
-                    nota1: 65,
-                    nota2: 80,
-                    nota3: 55
-                },
-                {
-                    nome: "Paulo",
-                    email: "paulosantosamaral@hotmail.com",
-                    nota1: 75,
-                    nota2: 80,
-                    nota3: 55
-                },
-                {
-                    nome: "Rogério",
-                    email: "rogerio@hotmail.com",
-                    nota1: 65,
-                    nota2: 60,
-                    nota3: 55
-                },
-                {
-                    nome: "Elizete",
-                    email: "elizete@hotmail.com",
-                    nota1: 95,
-                    nota2: 80,
-                    nota3: 55
-                },
-                {
-                    nome: "Boby",
-                    email: "boby@hotmail.com",
-                    nota1: 65,
-                    nota2: 30,
-                    nota3: 55
+    <script>
+        angular.module("meuModulo", [])
+            .controller("indexController", function ($scope) {
+                $scope.titulo = "Sistema com Angular JS";
+
+                $scope.alunos = [{
+                        nome: "Lucas",
+                        email: "lucassantosamaral@hotmail.com",
+                        nota1: 65,
+                        nota2: 80,
+                        nota3: 55
+                    },
+                    {
+                        nome: "Paulo",
+                        email: "paulosantosamaral@hotmail.com",
+                        nota1: 75,
+                        nota2: 80,
+                        nota3: 55
+                    },
+                    {
+                        nome: "Rogério",
+                        email: "rogerio@hotmail.com",
+                        nota1: 65,
+                        nota2: 60,
+                        nota3: 55
+                    },
+                    {
+                        nome: "Elizete",
+                        email: "elizete@hotmail.com",
+                        nota1: 95,
+                        nota2: 80,
+                        nota3: 55
+                    },
+                    {
+                        nome: "Boby",
+                        email: "boby@hotmail.com",
+                        nota1: 65,
+                        nota2: 30,
+                        nota3: 55
+                    }
+                ];
+
+                var init = function () {
+                    $scope.alunos.forEach(function (aluno) {
+                        aluno.media = media(aluno);
+                    });
                 }
-            ];
 
-            var init = function() {
-                $scope.alunos.forEach(function(aluno){
-                    aluno.media = media(aluno);
-                });
-            }
+                // var contar = 0;
 
-            // var contar = 0;
+                // var contar2 = 0;
 
-            // var contar2 = 0;
+                var media = function (Aluno) {
+                    // console.log(contar2++);
+                    var media = (parseFloat(Aluno.nota1) + parseFloat(Aluno.nota2) + parseFloat(Aluno.nota3)) / 3;
+                    return media.toFixed(2);
+                }
 
-            var media = function(Aluno){
-                // console.log(contar2++);
-                var media = (Aluno.nota1 + Aluno.nota2 + Aluno.nota3)/3;
-                return media.toFixed(2);
-            }
+                // $scope.media = function(Aluno){
+                //     console.log(contar++);
+                //     var media = (Aluno.nota1 + Aluno.nota2 + Aluno.nota3)/3;
+                //     return media.toFixed(2);
+                // }
 
-            // $scope.media = function(Aluno){
-            //     console.log(contar++);
-            //     var media = (Aluno.nota1 + Aluno.nota2 + Aluno.nota3)/3;
-            //     return media.toFixed(2);
-            // }
+                $scope.addAluno = function(Aluno){
+                    Aluno.media = media(Aluno);
+                    $scope.alunos.push(Aluno);
+                    $('#modal1').modal('close');
+                    $scope.Aluno = {
+                        nome: "",
+                        email: "",
+                        nota1: "",
+                        nota2: "",
+                        nota3: ""
+                    }
+                };
 
-            init();
+                init();
 
-        })
+            })
     </script>
 </body>
+
 </html>
