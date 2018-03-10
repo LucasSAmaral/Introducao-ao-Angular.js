@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <title>Introdução ao Angular</title>
+    <title>Sistema com Angular.js</title>
 </head>
 
 <body ng-controller="indexController">
@@ -48,7 +48,10 @@
                         <td>{{aluno.nota2}}</td>
                         <td>{{aluno.nota3}}</td>
                         <td>{{aluno.media}}</td>
-                        <td><button ng-click="editarAluno(aluno)" class="btn blue">Editar</button></td>
+                        <td>
+                            <button ng-click="editarAluno(aluno)" class="btn blue">Editar</button>
+                            <button ng-click="deletarAluno(aluno)" class="btn red">Deletar</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -204,6 +207,15 @@
                     alunoEditar.media = media(Aluno);
                     $('#modal1').modal('close');
                 };
+
+                $scope.deletarAluno = function(Aluno){
+                    for(var index in $scope.alunos){
+                        var aux = $scope.alunos[index];
+                        if(Aluno === aux){
+                            $scope.alunos.splice(index,1);
+                        }
+                    }
+                }
 
                 var limpaForm = function () {
                     $scope.Aluno = {
