@@ -1,5 +1,10 @@
 angular.module("meuModulo")
     .controller("indexController", function ($scope) {
+
+        $scope.$on('$viewContentLoaded', function(event) {
+            $('.modal').modal();
+        })
+
         $scope.titulo = "Home";
 
         $scope.alunos = [{
