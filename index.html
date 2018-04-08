@@ -8,11 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <title>Sistema com Angular.js</title>
     <style>
+        th:last-child {
+            padding-left: 40px;
+        }
+
         td:last-child {
             text-align: center;
         }
 
         @media (max-width: 1031px){
+            th:last-child {
+                padding-left: 0;
+            }
+            
             td:last-child{
                 display: grid;
             }
